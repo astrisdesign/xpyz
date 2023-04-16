@@ -9,44 +9,45 @@ Creating an XYZframe object
 from xyz import XYZframe
 
 ## Initialize an empty XYZframe object
-my_xyzframe = XYZframe()
+xf = XYZframe()
 
 ## Load point cloud data from a CSV file
-my_xyzframe = XYZframe.from_csv('my_data.csv')
+xf = XYZframe.from_csv('my_data.csv')
 
 ## Create an XYZframe object from a list of points
-my_xyzframe = XYZframe.from_point_list([(0,0,0), (1,0,0), (0,1,0)])
+xf = XYZframe.from_point_list([(0,0,0), (1,0,0), (0,1,0)])
 
 ## Translate point cloud by a given vector
-my_xyzframe.translate((1,1,1))
+xf.translate((1,1,1))
 
 ## Rotate point cloud around a given axis by a given angle in degrees
-my_xyzframe.rotate(45, (1,0,0))
+xf.rotate(45, (1,0,0))
 
 ## Scale point cloud by a given factor
-my_xyzframe.scale(2)
+xf.scale(2)
 
 ## Calculate nearest neighbor distances for each point in the cloud
-my_xyzframe.nn_distances()
+xf.nn_distances()
 
 ## Calculate root sum of squares for each point in the cloud
-my_xyzframe.rss()
+xf.rss()
 
 # Calculate cubic splines for x, y, and z values of the point cloud
-my_xyzframe.cubicspline()
+xf.cubicspline()
 
 # Calculate normals for each point in the cloud based on a given source point
-my_xyzframe.normals_from_source((0,0,0))
+xf.normals_from_source((0,0,0))
 
 # Plot the point cloud in 3D space
-my_xyzframe.plot()
+xf.plot()
 
 # Apply a color map to the point cloud based on a given data vector
-my_xyzframe.plot(vector='nn_dist', cmap_name='viridis')
+xf.plot(vector='nn_dist', cmap_name='viridis')
 
 # Save a series of images to create an animation of the point cloud
-my_xyzframe.animate(rotation_degrees=2, interval=50, save_path='my_animation.gif')
-Dependencies
+xf.animate(rotation_degrees=2, interval=50, save_path='my_animation.gif')
+
+# Dependencies
 NumPy
 Pandas
 SciPy
