@@ -43,6 +43,7 @@ xf.normals_from_source((0,0,0))
 
 ### Plot the point cloud in 3D space
 xf.plot()
+
 xf.plot('Data_Column_Name')
 
 ### Apply a color map to the point cloud based on a given data vector
