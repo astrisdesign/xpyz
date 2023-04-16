@@ -9,17 +9,16 @@ Dataframe special methods (such as .loc or indexing) pass directly to the XYZfra
 To install XYZframe, simply clone or download this repository and save the xyzframe.py file to your site-packages or project directory.
 
 # Usage
-Creating an XYZframe object
-from xyz import XYZframe
+import xyz
 
 ### Initialize an empty XYZframe object
-xf = XYZframe()
+xf = xyz.xfgen()
 
 ### Load point cloud data from a CSV file
-xf = XYZframe.from_csv('my_data.csv')
+xf = xyz.xfgen('my_data.csv')
 
 ### Create an XYZframe object from a list of points
-xf = XYZframe.from_point_list([(0,0,0), (1,0,0), (0,1,0)])
+xf = xyz.xfgen([(0,0,0), (1,0,0), (0,1,0)])
 
 ### Translate point cloud by a given vector
 xf.translate((1,1,1))
