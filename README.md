@@ -1,5 +1,9 @@
 # XYZframe
-XYZframe is a Python class that provides a convenient way to work with 3D point cloud data. It includes methods for manipulating and transforming point clouds, as well as calculating derived data such as nearest neighbor distances and cubic splines.
+XYZframe is a Python class that extends a Pandas DataFrame to work with 3D point cloud data. It includes methods for manipulating and transforming point clouds, as well as calculating derived data such as nearest neighbor distances and cubic splines.
+
+XYZframes have two "memory" attributes: a Pandas Dataframe (containing point data and any point-wise data columns), and a coordinate system object. The coordinate system "remembers" affine transormations on the point data.
+
+Dataframe special methods (such as .loc or indexing) pass directly to the XYZframe's DataFrame attribute and return a new dataframe. The new dataframe can be assigned to the .df attribute of a new XYZframe to create a filtered XYZframe, or etc. Try it out!
 
 # Installation
 To install XYZframe, simply clone or download this repository and save the xyzframe.py file to your site-packages or project directory.
