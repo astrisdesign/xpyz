@@ -215,6 +215,7 @@ class Plot3d(Plot2d):
         return ax
 
     def _blankplot(self):
+        plt.ioff()
         fig = plt.figure()
         ax = fig.add_subplot(111, projection='3d')
         ax = self._apply_ax_formats(ax)
@@ -261,27 +262,27 @@ def equal_aspect_ratio(ax, oversize_factor=1):
 #-----------------------------------------------------------------------------#
 #                              animate                                        #
 #-----------------------------------------------------------------------------#
-def animate(plotfunc, path, frame_plot_args:dict, fps=24, loop=0):
+def animate(plotfunc, save_directory, frame_plot_args:dict, fps=24, dpi=250, loop=0):
     '''- plotfunc: function that returns mpl fig, ax
     - path: full filepath ending in '.gif' for final animation
     - frame_plot_args: dict of lists {frame_number:[plot_func_args]}
-    Still frames are saved into and deleted from the lowest directory in path.'''
-    name_base = 'frame_{}.png'
-    savedir = os.path.dirname(path)
+    Still frames are saved into and deleted from the save_directory. Final filename is "animation.png".'''
 
+    frame_count = len(frame_plot_args[list(frame_plot_args)[0]])
     framenames = []
-    for k,v in frame_plot_args.items():
-        number = str(k).zfill(8)
-        framename = name_base.format(number)
+    # Write individual frames
+    for i in range(frame_count):
+        frame_num = str(i).zfill(8)
+        frame_args = {k:v[i] for k,v in frame_plot_args.items()}
+        framename = f'frame_{frame_num}.png'
         framenames.append(framename)
-        fig,ax = plotfunc(*v)
-        plt.figure(fig)
-        plt.savefig(os.path.join(savedir, framename))
-        plt.close()
+        fig,ax = plotfunc(**frame_args)
+        fig.savefig(os.path.join(save_directory, framename), dpi=dpi)
+        plt.close(fig)
 
-    framepaths = [os.path.join(savedir,f) for f in framenames]
+    framepaths = [os.path.join(save_directory,f) for f in framenames]
     imgs = [imageio.imread(f) for f in framepaths]
-    imageio.mimwrite(path, imgs, fps=fps, loop=loop)
+    imageio.mimwrite(os.path.join(save_directory, 'animation.gif'), imgs, fps=fps, loop=loop)
 
     for f in set(framepaths):
         os.remove(f)

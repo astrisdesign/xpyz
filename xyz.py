@@ -672,10 +672,16 @@ class XYZframe(object):
         else:
             p3d.show()
 
-    def plot_with_wm(self,vector:str=None, **kwargs):
-        fig,ax = self.plot(vector=vector, return_fig_ax=True, **kwargs)
-        self.wm.plot(fig,ax)
-        fig.show()
+    def plot_with_wm(self, return_fig_ax=False, **xf_plot_kwargs):
+        if return_fig_ax == True:
+            xf_plot_kwargs['return_fig_ax'] = True
+            fig,ax = self.plot(**xf_plot_kwargs)
+            self.wm.plot(fig,ax)
+            return fig,ax
+        else:
+            fig,ax = self.plot(**xf_plot_kwargs)
+            self.wm.plot(fig,ax)
+            fig.show()
 
 class xf_generator(object):
     def __init__(self):
