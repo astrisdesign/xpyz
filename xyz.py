@@ -11,7 +11,7 @@ import scipy.interpolate
 import copy
 from tqdm import tqdm
 from mpl_toolkits.mplot3d import Axes3D
-import plottools
+from xpyz import plottools
 
 #----------------------- Classes: TransformMatrix3d --------------------------#
 class TransM3d(object):

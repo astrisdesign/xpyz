@@ -19,7 +19,8 @@ plt.grid(True, which='major', color='silver', linewidth=0.1, linestyle='-')
 #-----------------------------------------------------------------------------#
 class colorbar_rgba:
 
-    def __init__(self, cmap_name='jet', min_val, max_val):
+    def __init__(self, cmap_name, min_val, max_val):
+        '''jet is the suggested color map.'''
         self.cmap_name = cmap_name
         self.cmap = plt.get_cmap(cmap_name)
         self.norm = mpl.colors.Normalize(vmin=min_val, vmax=max_val)
