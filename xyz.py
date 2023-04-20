@@ -679,7 +679,7 @@ class XYZframe(object):
             self.wm.plot(fig,ax)
             return fig,ax
         else:
-            fig,ax = self.plot(**xf_plot_kwargs)
+            fig,ax = self.plot(**xf_plot_kwargs, return_fig_ax=True)
             self.wm.plot(fig,ax)
             fig.show()
 
